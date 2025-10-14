@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import './Login_page.dart' as login_page;
+import 'Login_page.dart' as login_page;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 30),
 
             // email Text Field
-            Container(
+            SizedBox(
               width: 370,
               child: TextField(
                 controller: _emailController,
@@ -63,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 20),
 
             // password Text Field
-            Container(
+            SizedBox(
               width: 370,
               child: TextField(
                 controller: _passwordController,
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 20),
 
             // Sign Up Button
-            Container(
+            SizedBox(
               width: 370,
               height: 65,
               child: ElevatedButton(
