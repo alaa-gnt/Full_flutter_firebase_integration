@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './Login_page.dart' as login_page;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'post_model.dart';
@@ -19,22 +20,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginPage(),
+      // Use named routes to avoid circular imports and simplify navigation
+      initialRoute: '/signup',
+      routes: {
+        '/signup': (context) => const SignUpPage(),
+        '/login': (context) => const login_page.LoginPage(),
+      },
     );
   }
 }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -134,7 +141,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    // Navigate to the Login page defined in ./Login_page.dart
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => login_page.LoginPage(),
+                      ),
+                    );
+                  },
 
                   child: Text(
                     'Sign in',
