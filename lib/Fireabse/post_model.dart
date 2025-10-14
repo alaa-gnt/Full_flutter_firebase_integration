@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 // Model class for Post
 class Post {
   final int id;
