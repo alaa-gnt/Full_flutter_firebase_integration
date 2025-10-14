@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 30),
 
             // email Text Field
-            Container(
+            SizedBox(
               width: 370,
               child: TextField(
                 controller: _emailEntryController,
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20),
 
             // password Text Field
-            Container(
+            SizedBox(
               width: 370,
               child: TextField(
                 controller: _passwordEntryController,
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20),
 
             // Sign Up Button
-            Container(
+            SizedBox(
               width: 370,
               height: 65,
               child: ElevatedButton(
