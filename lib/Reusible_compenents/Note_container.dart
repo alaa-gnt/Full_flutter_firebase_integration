@@ -21,47 +21,56 @@ class NoteContainer extends StatefulWidget {
 class _NoteContainerState extends State<NoteContainer> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 50, // Made width even smaller
+    return Container(
+      width: double.infinity,
       height: 200,
-      child: Container(
-        padding: EdgeInsets.all(8.0),
-        margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        color: widget.color,
+        borderRadius: BorderRadius.circular(12.0),
+      ),
 
-        decoration: BoxDecoration(
-          color: widget.color,
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Align text to the left
-          children: [
-            // title
-            Text(
-              widget.title,
-              textAlign: TextAlign.left, // Left-align text
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      // Row: text area (Expanded) + icons column
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //  Expanded makes the text column take all available space
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(widget.content, style: const TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
+                Text(
+                  widget.date,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
             ),
+          ),
 
-            SizedBox(height: 20),
-
-            // note content
-            Text(
-              widget.content,
-              textAlign: TextAlign.left, // Left-align text
-              style: TextStyle(fontSize: 20),
-            ),
-
-            SizedBox(height: 20),
-
-            // date
-            Text(
-              widget.date,
-              textAlign: TextAlign.left, // Left-align text
-              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-            ),
-          ],
-        ),
+          //  Icons on the far right
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Icon(Icons.edit, size: 22),
+              SizedBox(height: 10),
+              Icon(Icons.delete, size: 22),
+            ],
+          ),
+        ],
       ),
     );
   }

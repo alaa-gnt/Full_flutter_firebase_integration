@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import './Login_page.dart' as login_page;
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'post_model.dart';
+import 'Pages/Login_page.dart' as login_page;
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'Fireabse/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import './Sign_Up_page.dart';
-import './Home_page.dart';
+import 'Pages/Sign_Up_page.dart';
+import 'Pages/Home_page.dart';
+import 'Pages/Selection_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,12 +22,20 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor:
+            Colors.grey[200], // Set app-wide background color
+        appBarTheme: AppBarTheme(
+          backgroundColor:
+              Colors.grey[200], // Match app bar color to background
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // Use named routes to avoid circular imports and simplify navigation
       routes: {
         '/signup': (context) => const SignUpPage(),
         '/login': (context) => const login_page.LoginPage(),
+        '/home': (context) => HomePage(),
+        '/SelectionPage': (context) => const SelectionPage(),
       },
       home: StreamBuilder(
         stream: FirebaseAuth.instance
@@ -43,9 +49,9 @@ class MyApp extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.data != null) {
-            return const HomePage();
+            return HomePage();
           }
-          return const SignUpPage();
+          return SignUpPage();
         },
       ),
     );
